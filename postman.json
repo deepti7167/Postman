@@ -39,7 +39,7 @@
 							"*/\r",
 							"//Response time//\r",
 							"pm.test(\"Response time is below 2000ms\",()=>{\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(222222);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(0);\r",
 							"});"
 						],
 						"type": "text/javascript",
