@@ -37,9 +37,9 @@
 							"    pm.expect(pm.cookies.get(\"language\")).to.eql(\"e\");\r",
 							"});\r",
 							"*/\r",
-							"//Response time\r",
+							"//Response time//\r",
 							"pm.test(\"Response time is below 2000ms\",()=>{\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(20);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(0);\r",
 							"});"
 						],
 						"type": "text/javascript",
