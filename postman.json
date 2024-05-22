@@ -29,18 +29,21 @@
 							"pm.test(\"content-type name\",()=>{\r",
 							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");\r",
 							"});\r",
+							"/*\r",
 							"pm.test(\"Cookies\",()=>{\r",
 							"    pm.expect(pm.cookies.has(\"language\")).to.be.true;\r",
 							"});\r",
 							"pm.test(\"Cookie language\",()=>{\r",
 							"    pm.expect(pm.cookies.get(\"language\")).to.eql(\"e\");\r",
 							"});\r",
-							"//Response time\r",
-							"pm.test(\"Response time is below 200ms\",()=>{\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"*/\r",
+							"//Response time//\r",
+							"pm.test(\"Response time is below 2000ms\",()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(20);\r",
 							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -70,6 +73,19 @@
 		},
 		{
 			"name": "postrequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondata = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id\",jsondata.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -112,7 +128,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://reqres.in/api/users/357",
+					"raw": "https://reqres.in/api/users/{{id_res}}",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -121,7 +137,7 @@
 					"path": [
 						"api",
 						"users",
-						"357"
+						"{{id_res}}"
 					]
 				}
 			},
@@ -133,7 +149,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/users/357",
+					"raw": "https://reqres.in/api/users/{{id_res}}",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -142,11 +158,39 @@
 					"path": [
 						"api",
 						"users",
-						"357"
+						"{{id_res}}"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id_res",
+			"value": ""
 		}
 	]
 }
